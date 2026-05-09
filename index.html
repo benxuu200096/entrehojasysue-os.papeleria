@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="manifest" href="manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entre Hojas y Sueños — Tienda Boutique</title>
+    
+    <!-- Enlace al manifest para que funcione como App si decides usarlo -->
+    <link rel="manifest" href="manifest.json">
+    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -91,22 +94,20 @@
     </footer>
 
     <script>
-        // 1. REEMPLAZA LAS X CON TU NÚMERO (Ejemplo: 56912345678)
         const miTelefono = "56949587942"; 
 
         const productos = [
             { id: 1, nom: 'Pack de Regalo', precio: 18990, img: '1fd3bb43-d052-429a-a364-85a8ae2872ff.png', desc: '3 alfajores premium, 6 barquillos, 4 fotos 9x13cm y 2 chapas imantada.' },
             { id: 2, nom: 'Alfajores Artesanales', precio: 3000, img: 'descarga.jpg', desc: 'Deliciosos alfajores bañados en chocolate artesanal.' },
-            { id: 3, nom: 'Barquillos de Chocolate', precio: 1800, img: 'images.jpg', desc: 'Crujientes y rellenos, el snack perfecto.' bolsa de 3 unidades },
+            { id: 3, nom: 'Barquillos de Chocolate', precio: 1800, img: 'images.jpg', desc: 'Crujientes y rellenos, el snack perfecto.' },
             { id: 4, nom: 'Pack 9 Fotos Polaroid', precio: 9900, img: 'descarga (1).jpg', desc: 'Tus mejores recuerdos en formato retro clásico.' },
             { id: 5, nom: 'Fotos Imantadas Personalizadas', precio: 12000, img: '0d8c056d-2281-4194-a413-c537d65e7c58.png', desc: 'Personaliza tu espacio con tus fotos favoritas.' },
             { id: 6, nom: 'Agendas Personalizadas', precio: 12990, img: '2cf5a5a1-456f-487c-a81d-f9f9028da2f5.png', desc: 'Diseño "Sinergia" para organizar tus metas.' },
             { id: 7, nom: 'Cuadernos Personalizados', precio: 7000, img: '723d3901-d82b-4b35-8408-521ea1127fdc.png', desc: 'El compañero ideal para tus estudios.' },
             { id: 8, nom: 'Chapitas Ilustradas', precio: 800, img: 'chapitas.jpg', desc: 'Varios diseños exclusivos para decorar.' },
             { id: 9, nom: 'Chapas con Espejo', precio: 1200, img: 'chapitas-espejo.jpg', desc: 'Prácticas chapitas con espejo de bolsillo.' },
-            { id: 10, nom: 'Tarjeta de presentación', precio: 4000, img: 'tarjeta.jpg', desc: 'Tarjeta de presentación 4000 una tarjeta y 100 en 7000' }
-            {id: 11, nom: Impresiones Personalizadas, precio: 5000, img: Impresiones.jpg, desc: impresiones de libros, cuentos, lecturas, etc. }
-            {id: 12: nom: 
+            { id: 10, nom: 'Tarjeta de presentación', precio: 4000, img: 'tarjeta.jpg', desc: 'Tarjeta de presentación personalizada. Pack 100 unidades por $7.000.' },
+            { id: 11, nom: 'Impresiones Personalizadas', precio: 5000, img: 'Impresiones.jpg', desc: 'Impresiones de libros, cuentos, lecturas y más.' }
         ];
 
         function pedirPorWhatsApp(nombreProducto) {
