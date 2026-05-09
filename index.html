@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entre Hojas y Sueños — Tienda Boutique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-fondo: #FFFDFD;
+            --color-blanco: #FFFFFF;
+            --color-rosa-suave: #FBE3E2;
+            --color-rosa-medio: #F5CAC3;
+            --color-dorado-texto: #9A7B70;
+            --color-oscuro: #4A3E3D;
+            --fuente-titulo: 'Playfair Display', serif;
+            --fuente-cuerpo: 'Montserrat', sans-serif;
+            --sombra: 0 10px 30px rgba(245, 202, 195, 0.2);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--color-fondo); color: var(--color-oscuro); font-family: var(--fuente-cuerpo); line-height: 1.6; }
+
+        header { background-color: var(--color-blanco); text-align: center; padding: 60px 20px; border-bottom: 1px solid var(--color-rosa-suave); }
+        header h1 { font-family: var(--fuente-titulo); font-size: 3rem; color: var(--color-oscuro); font-weight: 400; letter-spacing: 2px; margin-bottom: 10px; }
+        header p.subtitulo { font-size: 1rem; color: var(--color-dorado-texto); font-style: italic; letter-spacing: 1.5px; }
+
+        .contenedor { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+        .catalogo { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 30px; 
+        }
+
+        .producto-card { 
+            background-color: var(--color-blanco); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: var(--sombra); 
+            border: 1px solid rgba(250, 227, 226, 0.5); 
+            display: flex; 
+            flex-direction: column; 
+            transition: transform 0.3s ease;
+        }
+        .producto-card:hover { transform: translateY(-8px); }
+
+        .producto-img-box { height: 250px; overflow: hidden; display: flex; align-items: center; justify-content: center; background-color: #fcfcfc; }
+        .producto-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .producto-info { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; text-align: center; }
+        .producto-titulo { font-family: var(--fuente-titulo); font-size: 1.2rem; margin-bottom: 10px; color: var(--color-oscuro); }
+        .producto-desc { font-size: 0.85rem; color: #777; margin-bottom: 15px; min-height: 45px; }
+        .producto-precio { font-size: 1.3rem; font-weight: 600; margin-bottom: 20px; color: var(--color-oscuro); }
+
+        .btn-whatsapp { 
+            background-color: #25D366; 
+            color: white; 
+            border: none; 
+            padding: 12px; 
+            width: 100%; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+        .btn-whatsapp:hover { background-color: #128C7E; }
+
+        footer { text-align: center; padding: 40px; color: var(--color-dorado-texto); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Entre Hojas y Sueños</h1>
+        <p class="subtitulo">Detalles que endulzan tus días.</p>
+    </header>
+
+    <div class="contenedor">
+        <div class="catalogo" id="lista-productos"></div>
+    </div>
+
+    <footer>
+        &copy; 2026 Entre Hojas y Sueños — Hecho con ♡
+    </footer>
+
+    <script>
+        // 1. REEMPLAZA LAS X CON TU NÚMERO (Ejemplo: 56912345678)
+        const miTelefono = "56949587942"; 
+
+        const productos = [
+            { id: 1, nom: 'Pack de Regalo', precio: 18990, img: '1fd3bb43-d052-429a-a364-85a8ae2872ff.png', desc: '3 alfajores premium, 6 barquillos, 4 fotos 9x13cm y 2 chapas imantada.' },
+            { id: 2, nom: 'Alfajores Artesanales', precio: 3000, img: 'descarga.jpg', desc: 'Deliciosos alfajores bañados en chocolate artesanal.' },
+            { id: 3, nom: 'Barquillos de Chocolate', precio: 1800, img: 'images.jpg', desc: 'Crujientes y rellenos, el snack perfecto.' bolsa de 3 unidades },
+            { id: 4, nom: 'Pack 9 Fotos Polaroid', precio: 9900, img: 'descarga (1).jpg', desc: 'Tus mejores recuerdos en formato retro clásico.' },
+            { id: 5, nom: 'Fotos Imantadas Personalizadas', precio: 12000, img: '0d8c056d-2281-4194-a413-c537d65e7c58.png', desc: 'Personaliza tu espacio con tus fotos favoritas.' },
+            { id: 6, nom: 'Agendas Personalizadas', precio: 12990, img: '2cf5a5a1-456f-487c-a81d-f9f9028da2f5.png', desc: 'Diseño "Sinergia" para organizar tus metas.' },
+            { id: 7, nom: 'Cuadernos Personalizados', precio: 7000, img: '723d3901-d82b-4b35-8408-521ea1127fdc.png', desc: 'El compañero ideal para tus estudios.' },
+            { id: 8, nom: 'Chapitas Ilustradas', precio: 800, img: 'chapitas.jpg', desc: 'Varios diseños exclusivos para decorar.' },
+            { id: 9, nom: 'Chapas con Espejo', precio: 1200, img: 'chapitas-espejo.jpg', desc: 'Prácticas chapitas con espejo de bolsillo.' },
+            { id: 10, nom: 'Tarjeta de presentación', precio: 4000, img: 'tarjeta.jpg', desc: 'Tarjeta de presentación 4000 una tarjeta y 100 en 7000' }
+            {id: 11, nom: Impresiones Personalizadas, precio: 5000, img: Impresiones.jpg, desc: impresiones de libros, cuentos, lecturas, etc. }
+            {id: 12: nom: 
+        ];
+
+        function pedirPorWhatsApp(nombreProducto) {
+            const mensaje = encodeURIComponent(`¡Hola! Vi tu tienda y me encantaría pedir el producto: ${nombreProducto}. ¿Me cuentas cómo coordinamos?`);
+            window.open(`https://wa.me/${miTelefono}?text=${mensaje}`, '_blank');
+        }
+
+        function renderProductos() {
+            const contenedor = document.getElementById('lista-productos');
+            productos.forEach(p => {
+                contenedor.innerHTML += `
+                    <div class="producto-card">
+                        <div class="producto-img-box">
+                            <img src="${p.img}" alt="${p.nom}" onerror="this.src='https://via.placeholder.com/300x250?text=Imagen+No+Encontrada'">
+                        </div>
+                        <div class="producto-info">
+                            <h4 class="producto-titulo">${p.nom}</h4>
+                            <p class="producto-desc">${p.desc}</p>
+                            <div class="producto-precio">$${p.precio.toLocaleString('es-CL')}</div>
+                            <button class="btn-whatsapp" onclick="pedirPorWhatsApp('${p.nom}')">
+                                <span>Pedir por WhatsApp</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        renderProductos();
+    </script>
+</body>
+</html>
